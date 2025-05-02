@@ -1,26 +1,43 @@
 {
+  "id": "antonioextension",
   "name": "Antonio Extension",
-  "url": "https://example.com/manifest.json",
-  "seeders": 100,
-  "quality": "1080p",
-  "audio": "italiano",
-  "subtitles": "italiano",
-  "content": [
-    {
-      "title": "Anime Titolo",
-      "torrent_link": "https://example.com/torrent_file.torrent",
-      "quality": "1080p",
-      "seeders": 250,
-      "subtitles": "italiano",
-      "audio": "italiano"
+  "author": "Federico",
+  "version": "1.2.0",
+  "language": "it",
+  "site": "https://nyaa.si/",
+  "searchable": true,
+  "auto_select": true,
+  "search": {
+    "url": "https://nyaa.si/?q={query}&f=0&c=1_2&s=seeders&o=desc",
+    "results": {
+      "list": ".table-responsive tbody tr",
+      "name": "td:nth-child(2) a:last-child",
+      "link": "td:nth-child(2) a:last-child@href",
+      "magnet": "td:nth-child(3) a[href^='magnet']@href",
+      "seeders": "td:nth-child(6)",
+      "size": "td:nth-child(4)",
+      "description": "td:nth-child(2) a:last-child@title"
     },
-    {
-      "title": "Altro Anime Titolo",
-      "torrent_link": "https://example.com/altro_torrent_file.torrent",
-      "quality": "720p",
-      "seeders": 150,
-      "subtitles": "italiano",
-      "audio": "italiano"
+    "filters": [
+      {
+        "fields": ["name", "description"],
+        "include": ["[ITA]", "Italiano", "Dub Ita"],
+        "priority": 1
+      },
+      {
+        "fields": ["name", "description"],
+        "include": ["[SUB ITA]", "sub ita", "Sub-Ita", "Sub-ITA"],
+        "priority": 2
+      },
+      {
+        "fields": ["name"],
+        "include": ["1080p"],
+        "priority": 0
+      }
+    ],
+    "sort": {
+      "by": "seeders",
+      "order": "desc"
     }
-  ]
+  }
 }
